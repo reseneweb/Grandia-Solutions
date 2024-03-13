@@ -1,10 +1,8 @@
-# Getting Started with Create React App
+# Grandia Solutions
+**Grandia Solutions** presents an interactive product table, expertly combining React's reactive capabilities with the refined aesthetics of Ant Design. The application serves as a showcase for efficiently displaying and manipulating a dataset of beauty products.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
+## Live Demo:
+A live demo of the application is available here.
 
 ### `npm start`
 
