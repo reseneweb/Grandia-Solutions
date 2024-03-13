@@ -3,7 +3,7 @@
 
 **Live Demo:** https://grandia-solutions-rims9zyab-dmytros-projects-d82df1d8.vercel.app/
 
-### Core Features:
+### **Core Features:**
 
 **Dynamic Data Fetching:** The application sources its product data in real-time from the Makeup API, ensuring the information presented is always up-to-date.
 
@@ -19,7 +19,7 @@
 
 **Column Sorting:** Users can sort products directly from the table header, clicking to toggle between ascending and descending order based on any column criterion.
 
-### Technology Stack:
+### **Technology Stack:**
 
 **React:** The project is built on React, chosen for its declarative UI, efficient update and rendering, and widespread ecosystem.
 
@@ -27,7 +27,7 @@
 
 **Makeup API:** The live data feed comes from the Makeup API, offering a diverse collection of beauty products and their associated metadata.
 
-### How to Use:
+### **How to Use:**
 
 The application is designed with intuitiveness in mind. On loading, the user is presented with a sortable table populated with product data. Grouping can be adjusted with the toggle switches at the top, while specific subsets of products can be isolated with the brand and tag selectors.
 For developers, the project can be cloned from its GitHub repository, and it can be run locally or deployed to a hosting platform of choice.
