@@ -1,65 +1,28 @@
 # Grandia Solutions
 **Grandia Solutions** presents an interactive product table, expertly combining React's reactive capabilities with the refined aesthetics of Ant Design. The application serves as a showcase for efficiently displaying and manipulating a dataset of beauty products.
 
-## Live Demo:
-A live demo of the application is available here.
+**Live Demo:** https://grandia-solutions-rims9zyab-dmytros-projects-d82df1d8.vercel.app/
 
-### `npm start`
+### Core Features:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Dynamic Data Fetching:** The application sources its product data in real-time from the Makeup API, ensuring the information presented is always up-to-date.
+**Rich Table Display:** Product attributes such as image, name, category, brand, price, and type are laid out in a clear, tabular format for easy browsing.
+**Interactive Rating Visualization:** Product ratings are not merely numeric; they're rendered as progress bars, offering a visual gauge of product popularity and quality.
+**Expandable Product Details:** Each table row can be expanded to reveal a spectrum of available product colors, providing comprehensive details without cluttering the initial view.
+**Adaptable Data Grouping:** Users can categorize products based on type, brand, or category, utilizing toggle switches that reorganize the data on the fly.
+**Refined Filtering Options:** The inclusion of multi-select dropdowns allows for fine-grained filtering by brand and tags, with the product table updating instantaneously to reflect the selections.
+**Column Sorting:** Users can sort products directly from the table header, clicking to toggle between ascending and descending order based on any column criterion.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Technology Stack:
 
-### `npm test`
+**React:** The project is built on React, chosen for its declarative UI, efficient update and rendering, and widespread ecosystem.
+**Ant Design:** This UI framework supplies a comprehensive suite of design tools and components that underpin the app's user-friendly interface.
+**Makeup API:** The live data feed comes from the Makeup API, offering a diverse collection of beauty products and their associated metadata.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### How to Use:
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
+The application is designed with intuitiveness in mind. On loading, the user is presented with a sortable table populated with product data. Grouping can be adjusted with the toggle switches at the top, while specific subsets of products can be isolated with the brand and tag selectors.
+For developers, the project can be cloned from its GitHub repository, and it can be run locally or deployed to a hosting platform of choice.
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
