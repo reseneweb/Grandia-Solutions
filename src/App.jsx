@@ -80,7 +80,7 @@ function App() {
 
   const fetchProducts = async () => {
     try {
-      let query = 'http://makeup-api.herokuapp.com/api/v1/products.json?';
+      let query = 'https://makeup-api.herokuapp.com/api/v1/products.json?';
       if (selectedBrands.length > 0) {
         query += `brand=${selectedBrands.join('|')}&`;
       }
@@ -128,7 +128,7 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://makeup-api.herokuapp.com/api/v1/products.json')
+    fetch('https://makeup-api.herokuapp.com/api/v1/products.json')
       .then(response => {
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
