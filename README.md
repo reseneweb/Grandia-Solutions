@@ -1,8 +1,7 @@
 # Grandia Solutions
 **Grandia Solutions** presents an interactive product table, expertly combining React's reactive capabilities with the refined aesthetics of Ant Design. The application serves as a showcase for efficiently displaying and manipulating a dataset of beauty products.
 
-**Live Demo:** https://grandia-solutions-rims9zyab-dmytros-projects-d82df1d8.vercel.app/
-
+**Live Demo:** https://grandia-solutions-peach.vercel.app/
 ### **Core Features:**
 
 **Dynamic Data Fetching:** The application sources its product data in real-time from the Makeup API, ensuring the information presented is always up-to-date.
