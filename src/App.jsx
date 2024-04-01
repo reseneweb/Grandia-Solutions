@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Tag, Progress, Tooltip, Switch, Select } from 'antd';
+import { Table, Tag, Progress, Tooltip, Input, Select } from 'antd';
+import './App.css';
 
 const columns = [
   {
@@ -37,15 +38,26 @@ const columns = [
     dataIndex: 'price',
     key: 'price',
     sorter: (a, b) => (a.price || 0) - (b.price || 0),
+    render: (price) => {
+      if (price === null || +price < 0.1) {
+        return 'no data';
+      }
+
+      return price % 1 === 0 ? `${price.slice(0, -2)}$` : `${price}$`
+    },
   },
   {
-    title: 'Product Type',
+    title: '',
+    render: () => 'View colors:'
+  },
+  {
+    title: 'Type',
     dataIndex: 'product_type',
     key: 'productType',
     sorter: (a, b) => (a.product_type || '').localeCompare(b.product_type || ''),
   },
   {
-    title: 'Product rating',
+    title: 'Rating',
     dataIndex: 'rating',
     key: 'rating',
     render: (rating) => {
@@ -60,6 +72,7 @@ const columns = [
         </Tooltip>
       );
     },
+    sorter: (a, b) => (b.rating || 0) - (a.rating || 0),
   },
 ];
 
@@ -67,64 +80,16 @@ const { Option } = Select;
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const [groupedData, setGroupedData] = useState([]);
-  const [groupByType, setGroupByType] = useState(false);
-  const [groupByBrand, setGroupByBrand] = useState(false);
-  const [groupByCategory, setGroupByCategory] = useState(false);
-
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState([]);
+  const [selectedType, setSelectedType] = useState([]);
+  const [searchText, setSearchText] = useState('');
 
-  const fetchProducts = async () => {
-    try {
-      let query = 'https://makeup-api.herokuapp.com/api/v1/products.json?';
-      if (selectedBrands.length > 0) {
-        query += `brand=${selectedBrands.join('|')}&`;
-      }
-      if (selectedTags.length > 0) {
-        query += `tag_list=${selectedTags.join('|')}`;
-      }
-      const response = await fetch(query);
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-      const data = await response.json();
-      setProducts(data);
-    } catch (error) {
-      setError(`Failed to fetch products: ${error.message}`);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchProducts(selectedBrands, selectedTags);
-  }, []);
-
-  const handleBrandChange = (value) => {
-    setSelectedBrands(value);
-    fetchProducts(value, selectedTags);
-  };
-
-  const handleTagChange = (value) => {
-    setSelectedTags(value);
-    fetchProducts(selectedBrands, value);
-  };
-
-  const getUniqueBrands = () => {
-    return [...new Set(products.map(product => product.brand))].filter(Boolean);
-  };
-
-  const getUniqueTags = () => {
-    const tagSet = new Set();
-    products.forEach(product => {
-      product.tag_list?.forEach(tag => tagSet.add(tag));
-    });
-    return [...tagSet];
-  };
 
   useEffect(() => {
     setLoading(true);
@@ -145,70 +110,81 @@ function App() {
       });
   }, []);
 
+
   useEffect(() => {
-    const groupBy = (array, key) => {
-      return array.reduce((result, item) => {
-        const keyValue = item[key] || 'undefined';
-        (result[keyValue] = result[keyValue] || []).push(item);
-        return result;
-      }, {});
-    };
+    let newFilteredProducts = products.filter(product => {
+      return (
+        (selectedBrands.length === 0 || selectedBrands.includes(product.brand)) &&
+        (selectedTags.length === 0 || product.tag_list.some(tag => selectedTags.includes(tag))) &&
+        (selectedCategory.length === 0 || selectedCategory.includes(product.category)) &&
+        (selectedType.length === 0 || selectedType.includes(product.product_type)) &&
+        product.name.toLowerCase().includes(searchText.toLowerCase())
+      );
+    });
 
-    const applyGrouping = () => {
-      let grouped = { 'undefined': [...products] };
+    setFilteredProducts(newFilteredProducts);
+  }, [selectedBrands, selectedTags, selectedCategory, selectedType, searchText, products]);
 
-      if (groupByType) {
-        grouped = groupBy(products, 'product_type');
-      } else if (groupByBrand) {
-        grouped = groupBy(products, 'brand');
-      } else if (groupByCategory) {
-        grouped = groupBy(products, 'category');
-      }
+  const handleBrandChange = (value) => {
+    setSelectedBrands(value);
+  };
 
-      const groupedArray = Object.values(grouped).flat();
-      setGroupedData(groupedArray);
-    };
+  const handleTagChange = (value) => {
+    setSelectedTags(value);
+  };
 
-    applyGrouping();
-  }, [products, groupByType, groupByBrand, groupByCategory]);
+  const handleCategoryChange = (value) => {
+    setSelectedCategory(value);
+  };
+
+  const handleTypeChange = (value) => {
+    setSelectedType(value);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const getUniqueBrands = () => {
+    return [...new Set(products.map(product => product.brand))].filter(Boolean);
+  };
+
+  const getUniqueTags = () => {
+    const tagSet = new Set();
+    products.forEach(product => {
+      product.tag_list?.forEach(tag => tagSet.add(tag));
+    });
+    return [...tagSet];
+  };
+
+  const getUniqueCategories = () => {
+    return [...new Set(products.map(product => product.category))].filter(Boolean);
+  };
+
+  const getUniqueTypes = () => {
+    return [...new Set(products.map(product => product.product_type))].filter(Boolean);
+  };
 
   return (
     <div className="App">
-      <div>
-        {`Group by:  `}
-        <Switch
-          checkedChildren="Type"
-          unCheckedChildren="Type"
-          value={groupByType}
-          onChange={() => {
-            setGroupByType(!groupByType);
-            setGroupByBrand(false);
-            setGroupByCategory(false);
-          }}
+      <div className="selectors">
+        <Input
+          style={{ width: '200px', marginRight: '10px' }}
+          placeholder="Search by name"
+          value={searchText}
+          onChange={handleSearchChange}
         />
-        <Switch
-          checkedChildren="Brand"
-          unCheckedChildren="Brand"
-          value={groupByBrand}
-          onChange={() => {
-            setGroupByBrand(!groupByBrand);
-            setGroupByType(false);
-            setGroupByCategory(false);
-          }}
-        />
-        <Switch
-          checkedChildren="Category"
-          unCheckedChildren="Category"
-          value={groupByCategory}
-          onChange={() => {
-            setGroupByCategory(!groupByCategory);
-            setGroupByType(false);
-            setGroupByBrand(false);
-          }}
-        />
-      </div>
-
-      <div>
+        <Select
+          mode="multiple"
+          style={{ width: '200px', marginRight: '10px' }}
+          placeholder="Select categories"
+          onChange={handleCategoryChange}
+          value={selectedCategory}
+        >
+          {getUniqueCategories().map(category => (
+            <Option key={category} value={category}>{category}</Option>
+          ))}
+        </Select>
         <Select
           mode="multiple"
           style={{ width: '200px', marginRight: '10px' }}
@@ -218,6 +194,17 @@ function App() {
         >
           {getUniqueBrands().map(brand => (
             <Option key={brand} value={brand}>{brand}</Option>
+          ))}
+        </Select>
+        <Select
+          mode="multiple"
+          style={{ width: '200px', marginRight: '10px' }}
+          placeholder="Select types"
+          onChange={handleTypeChange}
+          value={selectedType}
+        >
+          {getUniqueTypes().map(type => (
+            <Option key={type} value={type}>{type}</Option>
           ))}
         </Select>
         <Select
@@ -235,12 +222,12 @@ function App() {
       </div>
 
       <Table
-        dataSource={groupedData}
+        dataSource={filteredProducts}
         columns={columns}
         rowKey="id"
         loading={loading}
         expandedRowRender={record => record.product_colors.map(color => (
-          <Tag color={color.hex_value} key={color.hex_name}>{color.colour_name}</Tag>
+          <Tag color={color.hex_value} key={color.hex_name} style={{ color: 'black' }}>{color.colour_name}</Tag>
         ))}
         expandIconColumnIndex={6}
       />
