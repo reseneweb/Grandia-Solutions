@@ -12,8 +12,6 @@
 
 **Expandable Product Details:** Each table row can be expanded to reveal a spectrum of available product colors, providing comprehensive details without cluttering the initial view.
 
-**Adaptable Data Grouping:** Users can categorize products based on type, brand, or category, utilizing toggle switches that reorganize the data on the fly.
-
 **Refined Filtering Options:** The inclusion of multi-select dropdowns allows for fine-grained filtering by brand and tags, with the product table updating instantaneously to reflect the selections.
 
 **Column Sorting:** Users can sort products directly from the table header, clicking to toggle between ascending and descending order based on any column criterion.
@@ -28,5 +26,5 @@
 
 ### **How to Use:**
 
-The application is designed with intuitiveness in mind. On loading, the user is presented with a sortable table populated with product data. Grouping can be adjusted with the toggle switches at the top, while specific subsets of products can be isolated with the brand and tag selectors.
+The application is designed with intuitiveness in mind. On loading, the user is presented with a sortable table populated with product data. You can search for a product by name, and you can isolate specific subsets of products using brand, tag, type, and tag selectors.
 For developers, the project can be cloned from its GitHub repository, and it can be run locally or deployed to a hosting platform of choice.
