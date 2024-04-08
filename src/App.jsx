@@ -131,22 +131,30 @@ function App() {
   };
 
   useEffect(() => {
-    setLoading(true);
-    fetch('https://makeup-api.herokuapp.com/api/v1/products.json')
-      .then(response => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch('https://makeup-api.herokuapp.com/api/v1/products.json?brand=colourpop');
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
-        return response.json();
-      })
-      .then(data => {
-        setProducts(data);
+        const initialProducts = await response.json();
+        setProducts(initialProducts);
         setLoading(false);
-      })
-      .catch(error => {
+
+        const fullResponse = await fetch('https://makeup-api.herokuapp.com/api/v1/products.json');
+        if (!fullResponse.ok) {
+          throw new Error(`Error: ${fullResponse.status}`);
+        }
+        const allProducts = await fullResponse.json();
+        setProducts(allProducts);
+      } catch (error) {
         setError(error.message);
         setLoading(false);
-      });
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   useEffect(() => {
@@ -205,16 +213,17 @@ function App() {
 
   return (
     <div className="App">
-      <Layout>
-        <Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white' }}>
-          <div className="logo" style={{ color: 'black', fontWeight: 'bold', fontSize: '24px' }}>
+      <Layout className="layout">
+        <Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#fafafa', padding: '0 26px' }}>
+          <a href="/" className="logo" style={{ color: 'black', fontWeight: 'bold', fontSize: '24px' }}>
             Grandia Solutions
-          </div>
+          </a>
           <Button type="primary" onClick={showModal}>
             Order
           </Button>
         </Header>
-        <Content style={{ padding: '0 50px' }}>
+
+        <Content style={{ padding: '0 10px', backgroundColor: '#fff' }} className="content">
           <div className="selectors">
             <Input
               style={{ width: '200px', marginRight: '10px' }}
@@ -281,8 +290,14 @@ function App() {
           />
           {error && <p>Error: {error}</p>}
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Grandia Solutions ©{new Date().getFullYear()} Created with ❤️
+        <Footer className="footer">
+          <div className="contact-us">
+            <p>Contact us:</p>
+            <a href="mailto:dmytro.fefelov@gmail.com" target="_blank" rel="noopener noreferrer">Gmail</a>
+            <a href="https://t.me/reseneweb" target="_blank" rel="noopener noreferrer">Telegram</a>
+            <a href="https://www.linkedin.com/in/dmytro-fefelov" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/reseneweb" target="_blank" rel="noopener noreferrer">Github</a>
+          </div>
         </Footer>
         <Modal
           open={isModalVisible}

@@ -1,9 +1,3 @@
-.selectors {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .menu {
   padding-left: -50px;
   width: 100vw;
@@ -44,4 +38,53 @@
   font-size: 16px;
   line-height: 1.5;
   word-wrap: break-word;
+}
+
+.contact-us {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.contact-us p {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.contact-us a {
+  margin: 0 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.contact-us a:hover {
+  text-decoration: underline;
+}
+
+.selectors {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0;
+  overflow-y: hidden;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+.footer {
+  text-align: center;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
