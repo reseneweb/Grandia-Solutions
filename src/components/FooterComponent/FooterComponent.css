@@ -1,0 +1,28 @@
+.footer {
+  text-align: center;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-us {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.contact-us p {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.contact-us a {
+  margin: 0 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.contact-us a:hover {
+  text-decoration: underline;
+}

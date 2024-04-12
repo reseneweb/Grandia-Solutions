@@ -1,77 +1,4 @@
-.menu {
-  padding-left: -50px;
-  width: 100vw;
-}
-
-.formItem {
-  margin-bottom: 15px;
-}
-
-.modal-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 10px;
-}
-
-.product-image-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.product-image {
-  max-width: 100%;
-  height: auto;
-}
-
-.product-details {
-  flex: 1;
-}
-
-.orderDetails {
-  margin-bottom: 14px;
-  color: rgba(0, 0, 0, 0.88);
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.5;
-  word-wrap: break-word;
-}
-
-.contact-us {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.contact-us p {
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.contact-us a {
-  margin: 0 10px;
-  color: #333;
-  text-decoration: none;
-}
-
-.contact-us a:hover {
-  text-decoration: underline;
-}
-
-.selectors {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 10px 0;
-  overflow-y: hidden;
-}
-
-.layout {
+.App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -79,12 +6,6 @@
 
 .content {
   flex: 1;
-}
-
-.footer {
-  text-align: center;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 0 10px;
+  background-color: #fff;
 }
