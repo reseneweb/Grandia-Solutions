@@ -16,6 +16,10 @@
 
 **Column Sorting:** Users can sort products directly from the table header, clicking to toggle between ascending and descending order based on any column criterion.
 
+**Enhanced User Interaction with Modal Windows:** Our application incorporates modal windows that facilitate deeper engagement without leaving the current context. These modals are used primarily for placing orders, allowing users to interact with product options directly from the product table.
+
+**Seamless Purchase Form Integration:** Each product's modal window includes a streamlined purchase form. This form allows users to select product variations, input personal details, and choose delivery options, all within a single, easy-to-navigate interface. The form validation ensures that all necessary information is entered before submission, enhancing the user experience and reducing errors.
+
 ### **Technology Stack:**
 
 **React:** The project is built on React, chosen for its declarative UI, efficient update and rendering, and widespread ecosystem.
